@@ -65,15 +65,14 @@ if not st.session_state.submitted:
             if index == current["correct"]:
                 st.session_state.score += 1
             st.session_state.submitted = True
-            st.experimental_rerun()
-else:
+
+if st.session_state.submitted:
     st.write("Feedback:")
     st.write(st.session_state.last_feedback)
     if st.session_state.step < len(steps):
         if st.button("Next"):
             st.session_state.step += 1
             st.session_state.submitted = False
-            st.experimental_rerun()
     else:
         st.write("Simulation complete!")
         st.write(f"Your score: {st.session_state.score} out of {len(steps)}")
